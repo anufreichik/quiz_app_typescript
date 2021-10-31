@@ -5,6 +5,8 @@ import StartCard from "./components/StartCard";
 import SectionCard from "./components/SectionCard";
 import {TAnswer, TQuestion} from "./utils";
 import FinishCard from "./components/FinishCard";
+import Layout from "./components/Layout";
+import {Box} from "@mui/material";
 
 const App = () => {
 
@@ -83,21 +85,29 @@ const App = () => {
     }
 
     return (
-        <div className="App">
+        <Layout>
             {!started ? (<StartCard startQuiz={startQuiz} name={quizData.name} description={quizData.description}/>)
                 :
                 !done?
                 (
-                    <>
+                    <Box sx={{
+                        display: 'flex',
+                        p: 1,
+                        m: 1,
+                        backgroundColor: 'background.white',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+
+                    }}>
                         <SectionCard title={quizData.sections[currentSectionInd].title}/>
                         <QuestionCard  question={currentQuestionData} next={next}/>
-                    </>
+                    </Box>
                 )
                     :
                    <FinishCard answers={answers}/>
             }
 
-        </div>
+        </Layout>
     );
 }
 

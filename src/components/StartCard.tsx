@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from "@mui/material";
 
 interface IProps{
     startQuiz:()=>void;
@@ -10,9 +11,9 @@ const StartCard = ({startQuiz, name, description}:IProps)=>{
         <div>
             <h2>{name}</h2>
             <h3>{description}</h3>
-            <button className='start' onClick={startQuiz}>
+            <Button  color="secondary" variant="contained" onClick={startQuiz}>
                 Start
-            </button>
+            </Button>
         </div>
     )
 }
