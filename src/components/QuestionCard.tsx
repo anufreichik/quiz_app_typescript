@@ -1,21 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
-import {TQuestion} from "../utils";
 import {Box, Button} from "@mui/material";
+import axios from "axios";
+import {TQuestion} from "../utils";
 
 
 interface IProps {
-    question: TQuestion;
+    question: string;
     next:(answer:string)=>void;
 }
 
 const QuestionCard = ({question, next}: IProps) => {
     const [answer, setAnswer]=useState('');
+    const [questionData, setQuestionData]=useState<TQuestion>();
 
     const submitAnswer=()=>{
         next(answer);
         setAnswer('')
     }
+
+    useEffect(() => {
+        axios.get(`https://run.mocky.io/v3/${question}`)
+            .then((res) => {
+                setQuestionData(res.data);
+            } );
+    }, [question]);
 
     return (
         <Box sx={{
@@ -27,7 +36,7 @@ const QuestionCard = ({question, next}: IProps) => {
             justifyContent: 'center'
 
         }}>
-            <div>{question.text}</div>
+            <div>{questionData?.questionText}</div>
             <Box  sx={{ marginTop:2 }}>
                 <TextField id="outlined-basic" label="Answer goes here" variant="outlined"  style = {{width: 500}} value={answer}
                            onChange={event => {

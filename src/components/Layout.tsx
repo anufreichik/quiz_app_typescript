@@ -12,22 +12,17 @@ const Layout: React.FC = ({children}) => {
             backgroundColor: 'background.paper',
             flexDirection: 'column',
             justifyContent: 'start',
-            height:'96vh'
+            alignItems:'center',
+            height: '96vh'
 
         }}>
             <Header/>
-            <Box sx={{
-                display: 'flex',
-                p: 1,
-                m: 1,
-                backgroundColor: 'background.white',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                flex:1
 
-            }}>
+            <div className='__container'>
                 {children}
-            </Box>
+            </div>
+
+
             <Footer/>
         </Box>
     );

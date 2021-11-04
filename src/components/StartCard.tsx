@@ -3,14 +3,14 @@ import {Button} from "@mui/material";
 
 interface IProps{
     startQuiz:()=>void;
-    name:string;
-    description:string;
+    name:string | undefined;
+    description:string | undefined;
 }
 const StartCard = ({startQuiz, name, description}:IProps)=>{
     return(
-        <div>
-            <h2>{name}</h2>
-            <h3>{description}</h3>
+        <div className='__card'>
+            <h1>{name}</h1>
+            <h2>{description}</h2>
             <Button  color="secondary" variant="contained" onClick={startQuiz}>
                 Start
             </Button>
